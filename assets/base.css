@@ -1543,7 +1543,7 @@ media-gallery:where(.media-gallery--grid) .media-gallery__grid {
   --product-media-fit: cover;
 
   img {
-    object-fit: var(--product-media-fit);
+    object-fit: contain;
   }
 }
 
