@@ -18,6 +18,10 @@
       gtag('config', 'AW-605565670');
     </script>
 
+    {%- if template contains 'page.sem-titulo-no-index' -%}
+      <meta name="robots" content="noindex">
+    {%- endif -%}
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
