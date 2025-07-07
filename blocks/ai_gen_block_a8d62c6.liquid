@@ -129,11 +129,11 @@
     <h2 class="author-cards-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
   {% endif %}
 
-  {% if product.metafields.custom.autores != blank and block.settings.show_authors %}
+  {% if product.metafields.custom.autor != blank and block.settings.show_authors %}
     {% if block.settings.authors_section_title != blank %}
       <h3 class="author-section-title-{{ ai_gen_id }}">{{ block.settings.authors_section_title }}</h3>
     {% endif %}<div class="author-cards-wrapper-{{ ai_gen_id }}">
-      {% for author_metaobject in product.metafields.custom.autores.value %}
+      {% for author_metaobject in product.metafields.custom.autor.value %}
         <div class="author-card-{{ ai_gen_id }}">
           <div class="author-card-image-container-{{ ai_gen_id }}">
             {% if author_metaobject.foto %}
@@ -149,41 +149,38 @@
             {% endif %}
           </div><div class="author-card-content-{{ ai_gen_id }}">
             <h4 class="author-card-name-{{ ai_gen_id }}">{{ author_metaobject.nome }}</h4>
-            <div class="author-card-bio-{{ ai_gen_id }}">{{ author_metaobject.biografia }}</div>
+            <div class="author-card-bio-{{ ai_gen_id }}">{{ author_metaobject.biografia | metafield_tag }}</div>
             <a href="{{ shop.url }}/pages/{{ author_metaobject.handle }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
           </div>
         </div>
       {% endfor %}
-    </div>
-  {% endif %}
 
-  {% if product.metafields.custom['autor_es_da_ilustracao'] != blank and block.settings.show_illustrators %}
-    {% if block.settings.illustrators_section_title != blank %}
-      <h3 class="author-section-title-{{ ai_gen_id }}">{{ block.settings.illustrators_section_title }}</h3>
-    {% endif %}
-    <div class="author-cards-wrapper-{{ ai_gen_id }}">
-      {% for illustrator_metaobject in product.metafields.custom['autor_es_da_ilustracao'].value %}
-        <div class="author-card-{{ ai_gen_id }}">
-          <div class="author-card-image-container-{{ ai_gen_id }}">
-            {% if illustrator_metaobject.foto %}
-              <img 
-                src="{{ illustrator_metaobject.foto | image_url: width: block.settings.image_width }}"
-                alt="{{ illustrator_metaobject.nome }}"
-                loading="lazy"
-                class="author-card-image-{{ ai_gen_id }}"
-                width="{{ block.settings.image_width }}"
-                height="{{ block.settings.image_width | times: block.settings.image_aspect_ratio | divided_by: 100 | round }}"
-              >
-            {% else %}
-              {{ 'image' | placeholder_svg_tag }}
-            {% endif %}
+
+      {% for illustrator_metaobject in product.metafields.custom.autor_da_ilustracao %}
+        {% unless product.metafields.custom.autor contains illustrator_metaobject  %}
+          {% assign illustrator_metaobject = illustrator_metaobject.value %}
+          <div class="author-card-{{ ai_gen_id }}">
+            <div class="author-card-image-container-{{ ai_gen_id }}">
+              {% if illustrator_metaobject.foto %}
+                <img 
+                  src="{{ illustrator_metaobject.foto | image_url: width: block.settings.image_width }}"
+                  alt="{{ illustrator_metaobject.nome }}"
+                  loading="lazy"
+                  class="author-card-image-{{ ai_gen_id }}"
+                  width="{{ block.settings.image_width }}"
+                  height="{{ block.settings.image_width | times: block.settings.image_aspect_ratio | divided_by: 100 | round }}"
+                >
+              {% else %}
+                {{ 'image' | placeholder_svg_tag }}
+              {% endif %}
+            </div>
+            <div class="author-card-content-{{ ai_gen_id }}">
+              <h4 class="author-card-name-{{ ai_gen_id }}">{{ illustrator_metaobject.nome }} - Ilustrações</h4>
+              <div class="author-card-bio-{{ ai_gen_id }}">{{ illustrator_metaobject.biografia | metafield_tag }}</div>
+              <a href="{{ shop.url }}/pages/{{ illustrator_metaobject.handle }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
+            </div>
           </div>
-          <div class="author-card-content-{{ ai_gen_id }}">
-            <h4 class="author-card-name-{{ ai_gen_id }}">{{ illustrator_metaobject.nome }}</h4>
-            <div class="author-card-bio-{{ ai_gen_id }}">{{ illustrator_metaobject.biografia }}</div>
-            <a href="{{ shop.url }}/pages/{{ illustrator_metaobject.handle }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
-          </div>
-        </div>
+        {% endunless %}
       {% endfor %}
     </div>
   {% endif %}
