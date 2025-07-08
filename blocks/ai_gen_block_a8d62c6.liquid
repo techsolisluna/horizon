@@ -6,6 +6,7 @@
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
+  
   .author-cards-container-{{ ai_gen_id }} {
     margin: {{ block.settings.margin_top }}px 0 {{ block.settings.margin_bottom }}px 0;
   }
@@ -17,53 +18,60 @@
     text-align: {{ block.settings.title_alignment }};
   }
 
-  .author-cards-wrapper-{{ ai_gen_id }} {
-    display: grid;
-    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
-    gap: {{ block.settings.gap }}px;
-    margin-bottom: 20px;
-  }
+  @media screen and (min-width: 750px) {
+    .author-cards-wrapper-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: {{ block.settings.gap }}px;
+      margin-bottom: 20px;
+    }
 
-  .author-card-{{ ai_gen_id }} {
-    display: flex;
-    flex-direction: column;
-    background-color: {{ block.settings.card_background_color }};
-    border-radius: {{ block.settings.card_border_radius }}px;
-    overflow: hidden;
-    box-shadow: 0 {{ block.settings.card_shadow }}px {{ block.settings.card_shadow | times: 2 }}px rgba(0, 0, 0, 0.1);
-    height: 100%;
-  }
+  
+    .author-card-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: row;
+      background-color: {{ block.settings.card_background_color }};
+      border-radius: {{ block.settings.card_border_radius }}px;
+      overflow: hidden;
+      box-shadow: 3px 3px 15px {{ block.settings.card_shadow }}px rgba(0,0,0,0.25);
+      width: 85%;
+      min-width:700px;
+      max-width: 1300px;
+      height: 350px;
+      align-items: stretch; /* Make children same height */
+    }
 
-  .author-card-image-container-{{ ai_gen_id }} {
-    width: 100%;
-    padding-top: {{ block.settings.image_aspect_ratio }}%;
-    position: relative;
-    overflow: hidden;
-    background-color: {{ block.settings.image_background_color }};
-  }
+    .author-card-image-container-{{ ai_gen_id }} {
+      flex-basis: {{ block.settings.image_column_width }}%;
+      flex-shrink: 0;
+      position: relative;
+      background-color: {{ block.settings.image_background_color }};
+    }
 
-  .author-card-image-{{ ai_gen_id }} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: {{ block.settings.image_fit }};
-  }
+    .author-card-image-{{ ai_gen_id }} {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: {{ block.settings.image_fit }};
+    }
 
-  .author-card-image-container-{{ ai_gen_id }} svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: {{ block.settings.image_background_color }};}
+    .author-card-image-container-{{ ai_gen_id }} svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: {{ block.settings.image_background_color }};}
 
-  .author-card-content-{{ ai_gen_id }} {
-    padding: {{ block.settings.card_padding }}px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    .author-card-content-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding }}px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
   }
 
   .author-card-name-{{ ai_gen_id }} {
@@ -105,8 +113,54 @@
   }
 
   @media screen and (max-width: 749px) {
-    .author-cards-wrapper-{{ ai_gen_id }} {
+     .author-cards-wrapper-{{ ai_gen_id }} {
+      display: grid;
       grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+      gap: {{ block.settings.gap }}px;
+      margin-bottom: 20px;
+    }
+
+    .author-card-{{ ai_gen_id }} {
+      display: flex;
+      flex-direction: column;
+      background-color: {{ block.settings.card_background_color }};
+      border-radius: {{ block.settings.card_border_radius }}px;
+      overflow: hidden;
+      box-shadow: 3px 3px 15px {{ block.settings.card_shadow }}px rgba(0,0,0,0.25);
+      height: 100%;
+      max-width: 500px;
+    }
+
+    .author-card-image-container-{{ ai_gen_id }} {
+      width: 100%;
+      padding-top: {{ block.settings.image_aspect_ratio }}%;
+      position: relative;
+      overflow: hidden;
+      background-color: {{ block.settings.image_background_color }};
+    }
+
+    .author-card-image-{{ ai_gen_id }} {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: {{ block.settings.image_fit }};
+    }
+
+    .author-card-image-container-{{ ai_gen_id }} svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: {{ block.settings.image_background_color }};}
+
+    .author-card-content-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding }}px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
     .author-cards-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.title_size | times: 0.8 }}px;
@@ -124,7 +178,8 @@
       font-size: {{ block.settings.section_title_size | times: 0.9 }}px;
     }
   }
-{% endstyle %}<div class="author-cards-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+{% endstyle %}
+<div class="author-cards-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   {% if block.settings.title != blank %}
     <h2 class="author-cards-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
   {% endif %}
@@ -132,7 +187,8 @@
   {% if product.metafields.custom.autor != blank and block.settings.show_authors %}
     {% if block.settings.authors_section_title != blank %}
       <h3 class="author-section-title-{{ ai_gen_id }}">{{ block.settings.authors_section_title }}</h3>
-    {% endif %}<div class="author-cards-wrapper-{{ ai_gen_id }}">
+    {% endif %}
+    <div class="author-cards-wrapper-{{ ai_gen_id }}">
       {% for author_metaobject in product.metafields.custom.autor.value %}
         <div class="author-card-{{ ai_gen_id }}">
           <div class="author-card-image-container-{{ ai_gen_id }}">
@@ -149,16 +205,23 @@
             {% endif %}
           </div><div class="author-card-content-{{ ai_gen_id }}">
             <h4 class="author-card-name-{{ ai_gen_id }}">{{ author_metaobject.nome }}</h4>
-            <div class="author-card-bio-{{ ai_gen_id }}">{{ author_metaobject.biografia | metafield_tag }}</div>
-            <a href="{{ shop.url }}/pages/{{ author_metaobject.handle }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
+            <div class="author-card-bio-{{ ai_gen_id }}">{{ author_metaobject.biografia | metafield_tag | strip_html | replace: ".", ". " | replace: ".  ", ". " | truncate: 700}}</div>
+            <a href="{{ author_metaobject.system.url }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
           </div>
         </div>
       {% endfor %}
 
 
-      {% for illustrator_metaobject in product.metafields.custom.autor_da_ilustracao %}
-        {% unless product.metafields.custom.autor contains illustrator_metaobject  %}
-          {% assign illustrator_metaobject = illustrator_metaobject.value %}
+      {% for illustrator_metaobject in product.metafields.custom.autor_da_ilustracao.value %}
+        {% assign illustator_is_author = false %}
+        {% for author_metaobject in product.metafields.custom.autor.value %}
+          {% if illustrator_metaobject.id == author_metaobject.id %}
+            {% assign illustator_is_author = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        
+        {% if illustator_is_author == false %}
           <div class="author-card-{{ ai_gen_id }}">
             <div class="author-card-image-container-{{ ai_gen_id }}">
               {% if illustrator_metaobject.foto %}
@@ -176,11 +239,11 @@
             </div>
             <div class="author-card-content-{{ ai_gen_id }}">
               <h4 class="author-card-name-{{ ai_gen_id }}">{{ illustrator_metaobject.nome }} - Ilustrações</h4>
-              <div class="author-card-bio-{{ ai_gen_id }}">{{ illustrator_metaobject.biografia | metafield_tag }}</div>
-              <a href="{{ shop.url }}/pages/{{ illustrator_metaobject.handle }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
+              <div class="author-card-bio-{{ ai_gen_id }}">{{ illustrator_metaobject.biografia | metafield_tag | strip_html | replace: ".", ". " | replace: ".  ", ". " | truncate: 700}}</div>
+              <a href="{{ illustrator_metaobject.system.url }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
             </div>
           </div>
-        {% endunless %}
+        {% endif %}
       {% endfor %}
     </div>
   {% endif %}
@@ -315,38 +378,13 @@
     },
     {
       "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "label": "Columns on desktop",
-      "default": 3
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "label": "Columns on mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "1"
-        },
-        {
-          "value": "2",
-          "label": "2"
-        }
-      ],
-      "default": "1"
-    },
-    {
-      "type": "range",
       "id": "gap",
       "min": 10,
       "max": 60,
       "step": 5,
       "unit": "px",
       "label": "Gap between cards",
-      "default": 20
+      "default": 40
     },
     {
       "type": "range",
@@ -411,6 +449,16 @@
     {
       "type": "header",
       "content": "Image Settings"
+    },
+    {
+      "type": "range",
+      "id": "image_column_width",
+      "min": 20,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "label": "Image Column Width (Desktop)",
+      "default": 30
     },
     {
       "type": "range",
