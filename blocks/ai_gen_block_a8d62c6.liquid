@@ -215,7 +215,7 @@
       {% for illustrator_metaobject in product.metafields.custom.autor_da_ilustracao.value %}
         {% assign illustator_is_author = false %}
         {% for author_metaobject in product.metafields.custom.autor.value %}
-          {% if illustrator_metaobject.id == author_metaobject.id %}
+          {% if illustrator_metaobject.system.id == author_metaobject.system.id %}
             {% assign illustator_is_author = true %}
             {% break %}
           {% endif %}
