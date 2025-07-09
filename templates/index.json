@@ -682,9 +682,9 @@
           ]
         }
       },
-      "name": "Lançamentos para crianças e jovens",
+      "name": "Lançamentos",
       "settings": {
-        "collection": "frontpage",
+        "collection": "lancamentos-1",
         "layout_type": "carousel",
         "carousel_on_mobile": false,
         "max_products": 12,
