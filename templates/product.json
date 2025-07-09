@@ -132,6 +132,32 @@
                   },
                   "blocks": {}
                 },
+                "text_HjAwYD2": {
+                  "type": "text_product_ilustrator",
+                  "name": "Ilustrador",
+                  "settings": {
+                    "text": "<p>Ilustrado por {{ closest.product.metafields.custom.autor_da_ilustracao | metafield_text: field: 'nome' }}</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "text_xrnftG": {
                   "type": "text",
                   "name": "Titulo",
@@ -185,6 +211,7 @@
               },
               "block_order": [
                 "text_HjAwYD",
+                "text_HjAwYD2",
                 "text_xrnftG",
                 "price_tVjtKg"
               ]
