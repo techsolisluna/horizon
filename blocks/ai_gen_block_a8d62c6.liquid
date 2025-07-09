@@ -238,7 +238,7 @@
               {% endif %}
             </div>
             <div class="author-card-content-{{ ai_gen_id }}">
-              <h4 class="author-card-name-{{ ai_gen_id }}">{{ illustrator_metaobject.nome }} - Ilustrações</h4>
+              <h4 class="author-card-name-{{ ai_gen_id }}">{{ illustrator_metaobject.nome }} - {% if localization.language.iso_code == "en" %}Illustrations{% else %}Ilustrações{% endif %}</h4>
               <div class="author-card-bio-{{ ai_gen_id }}">{{ illustrator_metaobject.biografia | metafield_tag | strip_html | replace: ".", ". " | replace: ".  ", ". " | truncate: 700}}</div>
               <a href="{{ illustrator_metaobject.system.url }}" class="author-card-button-{{ ai_gen_id }}">{{ block.settings.button_text }}</a>
             </div>
