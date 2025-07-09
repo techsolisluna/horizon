@@ -106,6 +106,13 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "badge": {
+                  "type": "main-product-badge",
+                  "name": "Badge",
+                  "settings": {
+                  },
+                  "blocks": {}
+                },
                 "text_HjAwYD": {
                   "type": "text",
                   "name": "Autor",
@@ -210,6 +217,7 @@
                 }
               },
               "block_order": [
+                "badge",
                 "text_HjAwYD",
                 "text_HjAwYD2",
                 "text_xrnftG",

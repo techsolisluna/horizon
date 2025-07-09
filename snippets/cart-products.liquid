@@ -233,6 +233,15 @@
                       {% endif %}
                     {% endif %}
                   </div>
+                  {%- if item.product.metafields.my_fields.prevenda == true -%}
+                    <div
+                      class="product-badges__badge"
+                      style="background-color: #a90000; color: white; --badge-border-radius: {{ settings.badge_corner_radius }}px; width: 70%; padding: 2px; min-width: 100px;
+                              --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};"
+                    >
+                      {% if localization.language.iso_code == "en" %}Pre-order{% else %}Pré-venda{% endif %}
+                    </div>
+                  {%- endif -%}
                 </td>
                 <td
                   class="cart-items__quantity"
