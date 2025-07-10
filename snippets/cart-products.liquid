@@ -233,7 +233,7 @@
                       {% endif %}
                     {% endif %}
                   </div>
-                  {%- if item.product.metafields.my_fields.prevenda == true -%}
+                  {%- if item.product.metafields.custom.status.value.system.handle == "pre-venda" -%}
                     <div
                       class="product-badges__badge"
                       style="background-color: #a90000; color: white; --badge-border-radius: {{ settings.badge_corner_radius }}px; width: 70%; padding: 2px; min-width: 100px;
