@@ -484,6 +484,13 @@
               "block_order": [
                 "accordion_Ma4Tr9"
               ]
+            },
+            "errata": {
+              "type": "Errata",
+              "name": "Envie uma errata",
+              "settings": {
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -494,7 +501,8 @@
             "swatches_tcYTXx",
             "text_aEtTtq",
             "icon_AgpVgU",
-            "group_FiCjVH"
+            "group_FiCjVH",
+            "errata"
           ]
         }
       },
