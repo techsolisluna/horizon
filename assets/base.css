@@ -4287,3 +4287,18 @@ text-component {
   min-height: 100px; /* Tamanho mínimo para o textarea */
   resize: none; /* Permite redimensionar apenas verticalmente */
 }
+
+/*Authors breadcrumb*/
+.breadcrumb .deactive{
+  text-decoration: none !important;
+  transition: all .2s;
+  color: rgb(102, 102, 102);
+}
+
+.breadcrumb .deactive:visited{
+  color: rgb(102, 102, 102);
+}
+
+.breadcrumb .deactive:hover{
+  color: black;
+}

@@ -12,6 +12,18 @@
     "section_iVDGta": {
       "type": "section",
       "name": "t:names.custom_section",
+      "blocks": {
+        "author-breadcrumb": {
+          "type": "author-breadcrumb",
+          "name": "Autor Breadcrumb",
+          "settings": {
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "author-breadcrumb"
+      ],
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
