@@ -11,19 +11,18 @@
   "sections": {
     "section_iVDGta": {
       "type": "section",
-      "name": "t:names.custom_section",
       "blocks": {
         "author-breadcrumb": {
           "type": "author-breadcrumb",
           "name": "Autor Breadcrumb",
-          "settings": {
-          },
+          "settings": {},
           "blocks": {}
         }
       },
       "block_order": [
         "author-breadcrumb"
       ],
+      "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -48,7 +47,7 @@
         "overlay_color": "#00000026",
         "overlay_style": "solid",
         "gradient_direction": "to top",
-        "padding-block-start": 0,
+        "padding-block-start": 40,
         "padding-block-end": 0
       }
     },
