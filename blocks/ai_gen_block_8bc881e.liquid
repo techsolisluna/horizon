@@ -1,9 +1,19 @@
+{% capture custom_products %}
+  {% paginate collections.all.products by 1000 %}
+    {% for product in collections.all.products %}
+      {{ custom_products }},{{ product }}
+    {% endfor %}
+  {% endpaginate %}
+{% endcapture %}
+
+{% assign custom_products = custom_products | split: ',' %}
+
 {% liquid
   # Pega o metaobject autor atual da página
   assign current_author = metaobject | default: metaobject
 
   # Para a seção principal, vamos usar todos os produtos e filtrar depois
-  assign section_products = collections.all.products
+  assign section_products = custom_products
   assign max_items = block.settings.max_products
 
   case block.settings.layout_type
@@ -51,30 +61,34 @@
 
   {% capture list_items %}
     {% assign products_found = 0 %}
-    {% for product in collections.all.products %}
-      {% assign show_product = false %}
+    {% paginate collections.all.products by 1000 %}
+      {% for product in collections.all.products %}
       
-      {% comment %} Verifica se o produto tem o autor atual na lista custom.autor {% endcomment %}
-      {% if product.metafields.custom.autor.value %}
-        {% for autor_no_produto in product.metafields.custom.autor.value %}
-          {% if autor_no_produto.system.id == current_author.system.id %}
-            {% assign show_product = true %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-      
-      {% if show_product and products_found < max_items %}
-        {% assign products_found = products_found | plus: 1 %}
-        <div class="resource-list__item">
-          {% content_for 'block', type: 'product-card', id: 'static-product-card', closest.product: product %}
-        </div>
 
-        {% unless products_found >= max_items %}
-          <!--@list/split-->
-        {% endunless %}
-      {% endif %}
-    {% endfor %}
+        {% assign show_product = false %}
+        
+        {% comment %} Verifica se o produto tem o autor atual na lista custom.autor {% endcomment %}
+        {% if product.metafields.custom.autor.value %}
+          {% for autor_no_produto in product.metafields.custom.autor.value %}
+            {% if autor_no_produto.system.id == current_author.system.id %}
+              {% assign show_product = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        
+        {% if show_product and products_found < max_items %}
+          {% assign products_found = products_found | plus: 1 %}
+          <div class="resource-list__item">
+            {% content_for 'block', type: 'product-card', id: 'static-product-card', closest.product: product %}
+          </div>
+
+          {% unless products_found >= max_items %}
+            <!--@list/split-->
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    {% endpaginate %}
     
     {% comment %} Se não encontrou produtos suficientes, adiciona placeholders {% endcomment %}
     {% if products_found == 0 %}
@@ -246,60 +260,51 @@
       <p>Debug - Products found: {{ filtered_products_found }}</p>
       {% endcomment %}
       
-      {% liquid
-        # Se uma coleção específica for escolhida, filtra por ela, senão usa todos os produtos
-        if block.settings.filter_collection != blank
-          assign products_to_filter = collections[block.settings.filter_collection].products
-        else
-          assign products_to_filter = collections.all.products
-        endif
-        
-        assign max_products = block.settings.filter_max_products | default: 12
-      %}
-      
       {% assign filtered_products_found = 0 %}
       {% assign filtered_products_html = '' %}
       
-      {% for product in products_to_filter %}
-        {% assign show_product = false %}
-        
-        {% comment %} Testa diferentes possibilidades do metafield {% endcomment %}
-        {% if product.metafields.custom.autor.value %}
-          {% for autor_no_produto in product.metafields.custom.autor.value %}
-            {% if autor_no_produto.system.id == current_author.system.id %}
-              {% assign show_product = true %}
-              {% break %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-        
-        {% if show_product and filtered_products_found < max_products %}
-          {% assign filtered_products_found = filtered_products_found | plus: 1 %}
-          {% capture product_html %}
-            <a href="{{ product.url }}" class="product-filter__card-{{ ai_gen_id }}">
-              {% if product.featured_image %}
-                <img 
-                  src="{{ product.featured_image | image_url: width: 400 }}"
-                  alt="{{ product.featured_image.alt | escape }}"
-                  loading="lazy"
-                  class="product-filter__image-{{ ai_gen_id }}"
-                  width="400"
-                  height="400"
-                >
-              {% else %}
-                <div class="product-filter__placeholder-{{ ai_gen_id }}">
-                  {{ 'product-apparel-1' | placeholder_svg_tag }}
-                </div>
+      {% paginate collections.all.products by 1000 %}
+        {% for product in collections.all.products %}
+          {% assign show_product = false %}
+          
+          {% comment %} Testa diferentes possibilidades do metafield {% endcomment %}
+          {% if product.metafields.custom.autor.value %}
+            {% for autor_no_produto in product.metafields.custom.autor.value %}
+              {% if autor_no_produto.system.id == current_author.system.id %}
+                {% assign show_product = true %}
+                {% break %}
               {% endif %}
-              <div class="product-filter__info-{{ ai_gen_id }}">
-                <h3 class="product-filter__title-{{ ai_gen_id }}">{{ product.title }}</h3>
-                <div class="product-filter__price-{{ ai_gen_id }}">{{ product.price | money }}</div>
-              </div>
-            </a>
-          {% endcapture %}
-          {% assign filtered_products_html = filtered_products_html | append: product_html %}
-        {% endif %}
-      {% endfor %}
+            {% endfor %}
+          {% endif %}
+          
+          {% if show_product and filtered_products_found %}
+            {% assign filtered_products_found = filtered_products_found | plus: 1 %}
+            {% capture product_html %}
+              <a href="{{ product.url }}" class="product-filter__card-{{ ai_gen_id }}">
+                {% if product.featured_image %}
+                  <img 
+                    src="{{ product.featured_image | image_url: width: 400 }}"
+                    alt="{{ product.featured_image.alt | escape }}"
+                    loading="lazy"
+                    class="product-filter__image-{{ ai_gen_id }}"
+                    width="400"
+                    height="400"
+                  >
+                {% else %}
+                  <div class="product-filter__placeholder-{{ ai_gen_id }}">
+                    {{ 'product-apparel-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+                <div class="product-filter__info-{{ ai_gen_id }}">
+                  <h3 class="product-filter__title-{{ ai_gen_id }}">{{ product.title }}</h3>
+                  <div class="product-filter__price-{{ ai_gen_id }}">{{ product.price | money }}</div>
+                </div>
+              </a>
+            {% endcapture %}
+            {% assign filtered_products_html = filtered_products_html | append: product_html %}
+          {% endif %}
+        {% endfor %}
+      {% endpaginate %}
       
       {% if filtered_products_found > 0 %}
         <div class="product-filter__grid-{{ ai_gen_id }}">
