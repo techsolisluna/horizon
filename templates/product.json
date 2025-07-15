@@ -109,8 +109,7 @@
                 "badge": {
                   "type": "main-product-badge",
                   "name": "Badge",
-                  "settings": {
-                  },
+                  "settings": {},
                   "blocks": {}
                 },
                 "text_HjAwYD": {
@@ -289,6 +288,20 @@
                 }
               },
               "block_order": []
+            },
+            "product_inventory_qXAHkA": {
+              "type": "product-inventory",
+              "name": "t:names.product_inventory",
+              "settings": {
+                "product": "{{ closest.product }}",
+                "inventory_threshold": 10,
+                "show_inventory_quantity": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             },
             "swatches_tcYTXx": {
               "type": "swatches",
@@ -486,10 +499,9 @@
               ]
             },
             "errata": {
-              "type": "Errata",
+              "type": "errata",
               "name": "Envie uma errata",
-              "settings": {
-              },
+              "settings": {},
               "blocks": {}
             }
           },
@@ -498,6 +510,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "product_inventory_qXAHkA",
             "swatches_tcYTXx",
             "text_aEtTtq",
             "icon_AgpVgU",
