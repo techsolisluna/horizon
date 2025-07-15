@@ -210,7 +210,6 @@
     },
     "section_KDABz7": {
       "type": "section",
-      "disabled": true,
       "blocks": {
         "ai_gen_block_8bc881e_F4UMWn": {
           "type": "ai_gen_block_8bc881e",
@@ -299,6 +298,7 @@
       "block_order": [
         "ai_gen_block_8bc881e_F4UMWn"
       ],
+      "disabled": true,
       "name": "t:names.custom_section",
       "settings": {
         "content_direction": "column",
@@ -369,7 +369,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2>Livros de {{ metaobject.nome.value }} publicados pela Solisluna</h2>",
+                "text": "<h3>Livros de {{ metaobject.nome.value }} publicados pela Solisluna</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -578,9 +578,9 @@
           ]
         }
       },
-      "name": "Lançamentos",
+      "name": "Livros do autor",
       "settings": {
-        "collection": "lancamentos-1",
+        "collection": "",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 12,
