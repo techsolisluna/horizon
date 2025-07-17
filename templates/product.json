@@ -540,6 +540,98 @@
         "padding-block-end": 0
       }
     },
+    "section_mq6RBB": {
+      "type": "section",
+      "blocks": {
+        "text_yagWdp": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Prêmios e reconhecimentos</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "ai_gen_block_48d4bde_MpiJVM": {
+          "type": "ai_gen_block_48d4bde",
+          "settings": {
+            "selected_product": "{{ closest.product }}",
+            "metafield_key": "awards",
+            "image_field": "",
+            "heading_field": "title",
+            "description_field": "description",
+            "url_field": "url",
+            "columns_desktop": "3",
+            "columns_mobile": "1",
+            "gap": 20,
+            "padding": 0,
+            "card_background_color": "#ffffff",
+            "card_border_radius": 8,
+            "card_border_width": 1,
+            "card_border_color": "#e6e6e6",
+            "hover_lift": 4,
+            "image_aspect_ratio": "1.33",
+            "content_padding": 20,
+            "content_spacing": 10,
+            "heading_size": 20,
+            "heading_weight": "600",
+            "heading_color": "#000000",
+            "description_size": 14,
+            "description_color": "#666666"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_yagWdp",
+        "ai_gen_block_48d4bde_MpiJVM"
+      ],
+      "name": "Prêmios e reconhecimentos",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "1751125067ca0a4964": {
       "type": "_blocks",
       "blocks": {
@@ -639,9 +731,9 @@
         "gap": 16,
         "section_width": "page-width",
         "section_height": "auto",
-        "banner_not_empty": true,
         "section_height_custom": 50,
         "color_scheme": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+        "banner_not_empty": true,
         "toggle_overlay": false,
         "overlay_color": "#00000026",
         "overlay_style": "gradient",
@@ -1104,6 +1196,7 @@
   },
   "order": [
     "main",
+    "section_mq6RBB",
     "1751125067ca0a4964",
     "hero_EfXQDX",
     "section_c9t9Qn",
