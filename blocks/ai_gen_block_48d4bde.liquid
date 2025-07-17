@@ -89,7 +89,7 @@
     }
   {% endstyle %}
 
-  <div style="max-width: 1300px; margin: auto;">
+  <div style="max-width: 1300px; margin: {{ block.settings.top_margin }}px auto {{ block.settings.bottom_margin }}px">
 
     <h2>{% if localization.language.iso_code == "en" %}Awards and recognitions{% else %}Prêmios e reconhecimentos{% endif %}</h2>
 
@@ -187,6 +187,26 @@
       "step": 5,
       "unit": "px",
       "label": "Gap between items",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "top_margin",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Margem superior",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "bottom_margin",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Margem inferior",
       "default": 20
     },
     {
