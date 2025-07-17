@@ -546,12 +546,6 @@
         "ai_gen_block_48d4bde_MpiJVM": {
           "type": "ai_gen_block_48d4bde",
           "settings": {
-            "selected_product": "{{ closest.product }}",
-            "metafield_key": "awards",
-            "image_field": "",
-            "heading_field": "title",
-            "description_field": "description",
-            "url_field": "url",
             "columns_desktop": "3",
             "columns_mobile": "1",
             "gap": 20,
