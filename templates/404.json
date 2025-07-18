@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "main": {
       "type": "main-404",
@@ -15,7 +16,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h1>Page not found</h1>",
+            "text": "<h1>Página não encontrada</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -41,7 +42,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>The link may be incorrect, or the page has been removed. </p>",
+            "text": "<p>Este link pode estar incorreto, ou a página foi removida.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -67,8 +68,8 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Continue shopping",
-            "link": "shopify://collections/all",
+            "label": "Continue comprando",
+            "link": "https://solisluna.com.br",
             "open_in_new_tab": false,
             "style_class": "button",
             "width": "fit-content",
@@ -132,26 +133,11 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "collection_link_button_8HqHdD": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "collection": "{{ closest.collection }}",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "custom",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            },
             "text_WJEa9Q": {
               "type": "text",
               "name": "t:names.text",
               "settings": {
-                "text": "<p>Discover something new</p>",
+                "text": "<p>{{ closest.collection.title }}</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -175,7 +161,6 @@
             }
           },
           "block_order": [
-            "collection_link_button_8HqHdD",
             "text_WJEa9Q"
           ]
         },
@@ -219,6 +204,7 @@
               "type": "group",
               "name": "t:names.group",
               "settings": {
+                "link": "",
                 "open_in_new_tab": false,
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -253,6 +239,32 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "text_ehQrd9": {
+                  "type": "text",
+                  "name": "Autores",
+                  "settings": {
+                    "text": "<p>{{ closest.product.metafields.custom.autor | metafield_text: field: 'nome' }}</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.75rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "product_title_9E9wr6": {
                   "type": "product-title",
                   "name": "t:names.product_title",
@@ -290,6 +302,12 @@
                     "type_preset": "h6",
                     "width": "100%",
                     "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "color": "var(--color-foreground)",
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -314,6 +332,7 @@
                 }
               },
               "block_order": [
+                "text_ehQrd9",
                 "product_title_9E9wr6",
                 "price_HjG4zP",
                 "swatches_gq6jjx"
@@ -328,7 +347,7 @@
       },
       "name": "t:names.products_grid",
       "settings": {
-        "collection": "all",
+        "collection": "lancamentos-1",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,

@@ -6,7 +6,8 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "cart-section": {
       "type": "main-cart",
@@ -104,7 +105,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>You may also like</h3>",
+                "text": "<h2>{{ closest.collection.title }}</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -130,7 +131,7 @@
               "type": "_product-list-button",
               "name": "t:names.product_list_button",
               "settings": {
-                "label": "View all",
+                "label": "Ver tudo",
                 "collection": "{{ closest.collection }}",
                 "open_in_new_tab": false,
                 "style_class": "link",
@@ -187,6 +188,7 @@
               "type": "group",
               "name": "t:names.group",
               "settings": {
+                "link": "",
                 "open_in_new_tab": false,
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -221,6 +223,32 @@
                 "padding-inline-end": 0
               },
               "blocks": {
+                "text_wJ3hj4": {
+                  "type": "text",
+                  "name": "Autores",
+                  "settings": {
+                    "text": "<p>{{ closest.product.metafields.custom.autor | metafield_text: field: 'nome' }}</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.75rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
                 "product_title_KDDQC4": {
                   "type": "product-title",
                   "name": "t:names.product_title",
@@ -288,6 +316,7 @@
                 }
               },
               "block_order": [
+                "text_wJ3hj4",
                 "product_title_KDDQC4",
                 "price_xaXgi9",
                 "swatches_xBnhpH"
@@ -302,7 +331,7 @@
       },
       "name": "t:names.products_grid",
       "settings": {
-        "collection": "all",
+        "collection": "lancamentos-1",
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 4,
