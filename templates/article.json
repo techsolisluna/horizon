@@ -21,9 +21,9 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
-            "type_preset": "h1",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "3.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -86,6 +86,8 @@
         }
       },
       "settings": {
+        "link_text": "Blog da Solis",
+        "link_url": "shopify://blogs/solisblogluna",
         "content_direction": "column",
         "gap": 32,
         "color_scheme": "",
@@ -186,7 +188,6 @@
           "block_order": []
         }
       },
-      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "{{ article.metafields.custom.featured_product.value }}",
