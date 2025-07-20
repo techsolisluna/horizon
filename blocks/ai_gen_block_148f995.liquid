@@ -6,7 +6,6 @@
     
     than link to the autor url page, show the metaobjects autor
     Add section description below heading
-    Add search field to filter authors
 
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
@@ -23,31 +22,6 @@
     {% endif %}
   }
 
-  .search-container-{{ ai_gen_id }} {
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: center;
-  }
-
-  .search-input-{{ ai_gen_id }} {
-    width: 100%;
-    max-width: 400px;
-    padding: 12px 20px;
-    font-size: 16px;
-    border: 2px solid #e1e1e1;
-    border-radius: 25px;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-
-  .search-input-{{ ai_gen_id }}:focus {
-    border-color: {{ block.settings.search_focus_color | default: '#007acc' }};
-  }
-
-  .search-input-{{ ai_gen_id }}::placeholder {
-    color: #999;
-  }
-
   .authors-grid-{{ ai_gen_id }} {
     display: grid;
     grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
@@ -61,10 +35,6 @@
     .authors-grid-{{ ai_gen_id }} {
       grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
     }
-    
-    .search-input-{{ ai_gen_id }} {
-      font-size: 16px; /* Evita zoom no iOS */
-    }
   }
 
   .author-card-{{ ai_gen_id }} {
@@ -75,12 +45,8 @@
     padding: {{ block.settings.card_padding }}px;
     border-radius: {{ block.settings.card_border_radius }}px;
     background-color: {{ block.settings.card_background_color }};
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease;
     text-decoration: none;
-  }
-
-  .author-card-{{ ai_gen_id }}.hidden {
-    display: none;
   }
 
   {% if block.settings.hover_effect %}
@@ -152,19 +118,6 @@
     color: {{ block.settings.heading_color }};
     font-size: {{ block.settings.heading_size }}px;
   }
-
-  .no-results-{{ ai_gen_id }} {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 40px 20px;
-    color: #666;
-    font-size: 18px;
-    display: none;
-  }
-
-  .no-results-{{ ai_gen_id }}.show {
-    display: block;
-  }
 {% endstyle %}
 
 <div class="authors-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
@@ -180,39 +133,10 @@
     </div>
   {% endif %}
 
-  {% if block.settings.show_search %}
-  <div class="search-container-{{ ai_gen_id }}">
-    <input 
-      type="text" 
-      class="search-input-{{ ai_gen_id }}"
-      placeholder="{{ block.settings.search_placeholder | default: 'Buscar autores...' }}"
-      id="authorSearch-{{ ai_gen_id }}"
-    >
-  </div>
-  {% endif %}
-
-  <div class="authors-grid-{{ ai_gen_id }}" id="authorsGrid-{{ ai_gen_id }}">
-    {% comment %} Tenta filtrar autores ativos com diferentes sintaxes {% endcomment %}
-    {% assign todos_autores = metaobjects.autor.values %}
-    
-    {% comment %} Tenta diferentes formas de acessar o campo ativo {% endcomment %}
-    {% assign autores_filtrados = '' | split: '' %}
-    {% for autor in todos_autores %}
-      {% comment %} Verifica diferentes possibilidades do campo ativo {% endcomment %}
-      {% if autor.ativo.value == true or autor.ativo == true or autor.ativo.value == 'true' or autor.ativo == 'true' %}
-        {% assign autores_filtrados = autores_filtrados | append: autor %}
-      {% endif %}
-    {% endfor %}
-    
-    {% comment %} Se não encontrou autores ativos, usa todos {% endcomment %}
-    {% if autores_filtrados.size == 0 %}
-      {% assign autores_filtrados = todos_autores %}
-    {% endif %}
-    
-    {% assign autores_ordenados = autores_filtrados | sort: 'nome.value' %}
-    
-    {% for autor in autores_ordenados %}
-      <a href="{{ autor.system.url }}" class="author-card-{{ ai_gen_id }}" data-name="{{ autor.nome.value | downcase }}">
+  <div class="authors-grid-{{ ai_gen_id }}">
+    {% assign autores_ordenados = metaobjects.autor.values | sort: 'nome.value' %}
+      {% for autor in autores_ordenados %}
+      <a href="{{ autor.system.url }}" class="author-card-{{ ai_gen_id }}">
         <div class="author-image-wrapper-{{ ai_gen_id }}">
           {% if autor.foto.value != blank %}
             <img 
@@ -231,7 +155,7 @@
       </a>
     {% else %}
       {% for i in (1..4) %}
-        <div class="author-card-{{ ai_gen_id }}" data-name="author name">
+        <div class="author-card-{{ ai_gen_id }}">
           <div class="author-image-wrapper-{{ ai_gen_id }}">
             <div class="author-image-placeholder-{{ ai_gen_id }}">
               {{ 'image' | placeholder_svg_tag }}
@@ -241,48 +165,8 @@
         </div>
       {% endfor %}
     {% endfor %}
-    
-    <div class="no-results-{{ ai_gen_id }}">
-      Nenhum autor encontrado com esse termo de busca.
-    </div>
   </div>
 </div>
-
-{% if block.settings.show_search %}
-<script>
-(function() {
-  const searchInput = document.getElementById('authorSearch-{{ ai_gen_id }}');
-  const authorsGrid = document.getElementById('authorsGrid-{{ ai_gen_id }}');
-  const authorCards = authorsGrid.querySelectorAll('.author-card-{{ ai_gen_id }}');
-  const noResults = authorsGrid.querySelector('.no-results-{{ ai_gen_id }}');
-
-  if (searchInput && authorCards.length > 0) {
-    searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase().trim();
-      let visibleCount = 0;
-
-      authorCards.forEach(function(card) {
-        const authorName = card.getAttribute('data-name') || '';
-        
-        if (authorName.includes(searchTerm)) {
-          card.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-
-      // Mostra/esconde mensagem de "não encontrado"
-      if (visibleCount === 0 && searchTerm !== '') {
-        noResults.classList.add('show');
-      } else {
-        noResults.classList.remove('show');
-      }
-    });
-  }
-})();
-</script>
-{% endif %}
 
 {% schema %}
 {
@@ -344,28 +228,6 @@
         }
       ],
       "default": "center"
-    },
-    {
-      "type": "header",
-      "content": "Search"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_search",
-      "label": "Show search field",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "search_placeholder",
-      "label": "Search placeholder text",
-      "default": "Buscar autores..."
-    },
-    {
-      "type": "color",
-      "id": "search_focus_color",
-      "label": "Search field focus color",
-      "default": "#007acc"
     },
     {
       "type": "header",
