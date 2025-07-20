@@ -134,8 +134,11 @@
   {% endif %}
 
   <div class="authors-grid-{{ ai_gen_id }}">
-    {% assign autores_ordenados = metaobjects.autor.values | sort: 'nome.value' %}
-      {% for autor in autores_ordenados %}
+    {% comment %} Filtra apenas autores ativos e depois ordena por nome {% endcomment %}
+    {% assign autores_ativos = metaobjects.autor.values | where: 'ativo.value', true %}
+    {% assign autores_ordenados = autores_ativos | sort: 'nome.value' %}
+    
+    {% for autor in autores_ordenados %}
       <a href="{{ autor.system.url }}" class="author-card-{{ ai_gen_id }}">
         <div class="author-image-wrapper-{{ ai_gen_id }}">
           {% if autor.foto.value != blank %}
