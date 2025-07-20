@@ -383,6 +383,7 @@
             "text_QDpmUw": {
               "type": "text",
               "name": "t:names.text",
+              "disabled": true,
               "settings": {
                 "text": "<h3>Compre por coleção</h3>",
                 "width": "100%",
@@ -1191,8 +1192,8 @@
     "hero_jVaWmY",
     "product_list_GEztnp",
     "collection_list_dWtwyr",
-    "media_with_content_cyX99F",
     "marquee_DPpXh7",
+    "media_with_content_cyX99F",
     "section_rAtRm9",
     "featured_product_4kgcAw",
     "featured_product_qKiAaK",
