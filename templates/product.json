@@ -294,7 +294,7 @@
               "name": "t:names.product_inventory",
               "settings": {
                 "product": "{{ closest.product }}",
-                "inventory_threshold": 10,
+                "inventory_threshold": 30,
                 "show_inventory_quantity": true,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -314,6 +314,7 @@
             "swatches_tcYTXx": {
               "type": "swatches",
               "name": "t:names.swatches",
+              "disabled": true,
               "settings": {
                 "product": "{{ closest.product }}",
                 "product_swatches_alignment": "flex-start",
