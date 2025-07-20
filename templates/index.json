@@ -460,7 +460,7 @@
               "name": "t:names.text",
               "disabled": true,
               "settings": {
-                "text": "{{ closest.collection.description }}",
+                "text": "<p>{{ closest.collection.description }}</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -795,8 +795,9 @@
             "media_type": "image",
             "image": "shopify://shop_images/A_incrivel_expedicao_dos_robos_06_1_1.jpg",
             "link": "",
+            "video": "shopify://files/videos/BG-ROBOTI.mov",
             "video_loop": true,
-            "video_autoplay": false,
+            "video_autoplay": true,
             "image_position": "cover",
             "video_position": "cover"
           },
@@ -1098,6 +1099,92 @@
         "padding-block-start": 40,
         "padding-block-end": 40
       }
+    },
+    "media_with_content_NQ3HVL": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "video",
+            "link": "",
+            "video": "shopify://files/videos/LENDASQUADRADO-Upto4K.mov",
+            "video_loop": true,
+            "video_autoplay": true,
+            "image_position": "cover",
+            "video_position": "cover"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 24
+          },
+          "blocks": {
+            "text_XXt3d3": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h2>coleção</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "jumbo_text_TTRnTq": {
+              "type": "jumbo-text",
+              "name": "t:names.jumbo_text",
+              "settings": {
+                "text": "Lendas dos Orixás",
+                "font": "accent",
+                "alignment": "right",
+                "line_height": "0.8",
+                "letter_spacing": "-0.03em",
+                "case": "none",
+                "text_effect": "none",
+                "animation_repeat": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_XXt3d3",
+            "jumbo_text_TTRnTq"
+          ]
+        }
+      },
+      "name": "t:names.editorial_jumbo_text",
+      "settings": {
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "extend_media": true,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -1109,6 +1196,7 @@
     "section_rAtRm9",
     "featured_product_4kgcAw",
     "featured_product_qKiAaK",
-    "hero_LEpq8q"
+    "hero_LEpq8q",
+    "media_with_content_NQ3HVL"
   ]
 }
