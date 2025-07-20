@@ -353,7 +353,7 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-start",
             "gap": 16,
             "width": "fill",
             "custom_width": 100,
@@ -419,7 +419,7 @@
             "collection": "{{ closest.collection }}",
             "placement": "on_image",
             "horizontal_alignment": "flex-start",
-            "vertical_alignment": "flex-end",
+            "vertical_alignment": "flex-start",
             "collection_card_gap": 8,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-4",
@@ -446,12 +446,39 @@
                 "wrap": "balance",
                 "color": "var(--color-foreground-heading)",
                 "background": false,
-                "background_color": "#ffd700df",
+                "background_color": "#ffd700de",
                 "corner_radius": 4,
                 "padding-block-start": 4,
                 "padding-block-end": 4,
                 "padding-inline-start": 8,
                 "padding-inline-end": 8
+              },
+              "blocks": {}
+            },
+            "text_8djFwU": {
+              "type": "text",
+              "name": "t:names.text",
+              "disabled": true,
+              "settings": {
+                "text": "{{ closest.collection.description }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {}
             },
@@ -463,7 +490,7 @@
                 "collection": "{{ closest.collection }}",
                 "image_ratio": "square",
                 "toggle_overlay": true,
-                "overlay_color": "#ffd700d3",
+                "overlay_color": "#ffd700d4",
                 "overlay_style": "solid",
                 "gradient_direction": "to bottom",
                 "border": "none",
@@ -475,7 +502,8 @@
             }
           },
           "block_order": [
-            "collection_title_bHPRPd"
+            "collection_title_bHPRPd",
+            "text_8djFwU"
           ]
         }
       },
@@ -487,7 +515,7 @@
         "collection_list": [
           "frontpage",
           "lancamentos",
-          "colecao-de-ensaios-para-pensar-a-leitura-selo-emilia-solisluna",
+          "educacao",
           "lendas-africanas",
           "arte",
           "cultura-afrobrasileira",
