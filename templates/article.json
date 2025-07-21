@@ -188,6 +188,7 @@
           "block_order": []
         }
       },
+      "disabled": true,
       "name": "t:names.featured_product",
       "settings": {
         "product": "{{ article.metafields.custom.featured_product.value }}",
